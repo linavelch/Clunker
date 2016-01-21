@@ -1,5 +1,26 @@
 /* CSS declarations go here */
+h1 {
+ font-size: 150px;
+ color:white;
+ opacity:0.7;
+ font-family: "Lucida Console", Courier, monospace;
+ position: fixed;
+ top:20%;
+ left:50%;
+ transform:translate(-50%, -180%);
+ font-style:oblique;
+}
+h2 {
+  color:white;
+  opacity:0.7;
+  font-family: "Lucida Console", Courier, monospace;
+}
 body {
-  background-image:url("http://wallfon.com/walls/towns/urban-road.jpg");
+background-image:url("http://www.dailypicsupdate.com/wp-content/uploads/2013/06/Chicago-City-road-photo-and-pics.jpeg");
 background-size: cover;
+
+position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
 }
