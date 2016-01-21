@@ -16,11 +16,15 @@ h2 {
   font-family: "Lucida Console", Courier, monospace;
 }
 body {
-background-image:url("http://www.dailypicsupdate.com/wp-content/uploads/2013/06/Chicago-City-road-photo-and-pics.jpeg");
+background-image:url("chicago.jpg");
 background-size: cover;
 
 position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -45%);
+}
+img {
+  opacity:0.7;
+  width:40%;
 }

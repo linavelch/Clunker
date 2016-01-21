@@ -32,6 +32,6 @@ if (Meteor.isServer) {
   });
   Accounts.config({
     restrictCreationByEmailDomain: 'williams.edu',
-    sendVerification: true
+    sendVerificationEmail: true
   });
 }
