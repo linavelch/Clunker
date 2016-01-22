@@ -2,24 +2,22 @@
   <title>Clunker</title>
 </head>
 
-<body>
-<h1>RideAlong</h1>
-<img src="image1.png">
+  <body>
+    <h1>ClunkerU</h1>
   {{#if currentUser}}
     {{> settings}}
   {{else}}
     {{> signup}}
     {{> login}}
   {{/if}}
-</body>
+  </body>
 
 <template name="settings">
-  <p>You're logged in!</p>
   <p><a href="#" class="logout">Logout</a></p>
 </template>
 
 <template name="signup">
-  <h2>Signup</h2>
+  <h2>Sign Up:</h2>
   <form>
     <input type="email" name="signupEmail" placeholder="Email">
     <input type="password" name="signupPassword" placeholder="Password">
@@ -28,10 +26,18 @@
 </template>
 
 <template name="login">
-  <h2>Log in</h2>
+  <h2>Log In:</h2>
   <form>
     <input type="email" name="loginEmail" placeholder="Email">
     <input type="password" name="loginPassword" placeholder="Password">
     <input type="submit" value="Login">
   </form>
+</template>
+
+<template name="layout">
+  <h1>ClunkerU</h1>
+</template>
+
+<template name="listings">
+  <p>This is an app created in CSCI16 over winter study.</p>
 </template>
