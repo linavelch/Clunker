@@ -1,16 +1,21 @@
-<head>
-  <title>Clunker</title>
-</head>
+<template name="layout">
+  <head>
+    <title>Clunker</title>
+  </head>
 
   <body>
     <h1>ClunkerU</h1>
-  {{#if currentUser}}
-    {{> settings}}
-  {{else}}
-    {{> signup}}
-    {{> login}}
-  {{/if}}
+    {{#if currentUser}}
+      {{> settings}}
+    {{else}}
+      {{> signup}}
+      {{> login}}
+    {{/if}}
+  
+    {{> yield }}
   </body>
+
+</template>
 
 <template name="settings">
   <p><a href="#" class="logout">Logout</a></p>
@@ -32,10 +37,6 @@
     <input type="password" name="loginPassword" placeholder="Password">
     <input type="submit" value="Login">
   </form>
-</template>
-
-<template name="layout">
-  <h1>ClunkerU</h1>
 </template>
 
 <template name="listings">
