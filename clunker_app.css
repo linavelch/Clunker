@@ -1,9 +1,10 @@
-/* CSS declarations go here */
+@import url(https://fonts.googleapis.com/css?family=Oswald:400,300,700);
+
 h1 {
  font-size: 150px;
  color:white;
  opacity:0.7;
- font-family: "Lucida Console", monospace;
+ font-family: "Oswald", monospace;
  position: fixed;
  top:20%;
  left:50%;
@@ -13,7 +14,7 @@ h1 {
 h2 {
   color:white;
   opacity:0.7;
-  font-family: "Lucida Console", monospace;
+  font-family: "Oswald", monospace;
 }
 body {
 background-image:url("chicago.jpg");
