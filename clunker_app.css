@@ -27,9 +27,13 @@ transform: translate(-50%, -45%);
 }
 
 .transbox {
+  padding: 10px 10px 10px 10px;
+  position:relative;
+  width:600px;
+  height:500px;
   margin:100px;
   background-color:white;
-  opacity:0.6;
+  opacity:0.8;
   filter:alpha(opacity=60);
 }
 .nav {
@@ -55,7 +59,7 @@ transform: translate(-50%, -45%);
   padding: 10px 20px;
   color:black;
 }
-/*.email {
+.email {
   width:200px;
   height:25px;
   background:rgba(255,255,255,0.8);
@@ -71,7 +75,7 @@ transform: translate(-50%, -45%);
   font-family: "Lucida Console", monospace;
   border-width:0px;
 }
-submit {
+.submit {
   	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
   	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
   	box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -96,4 +100,10 @@ submit {
   	padding:6px 24px;
   	text-decoration:none;
   	text-shadow:0px 1px 0px #ffffff;
-}*/
+}
+.form-control {
+    background:rgba(255,255,255,0.8);
+    font-size:15px;
+    font-family: "Lucida Console", monospace;
+    border-width:1px;
+}
