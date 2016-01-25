@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald:400,300,700);
 
 h1 {
- font-size: 150px;
+ font-size: 130px;
  color:white;
  opacity:0.7;
  font-family: "Oswald", monospace;
@@ -18,8 +18,8 @@ h2 {
 }
 body {
 background-image:url("chicago.jpg");
-background-size: cover;
-
+//background-size: cover;
+background-position: right 45 px;
 position:fixed;
 top: 50%;
 left: 50%;
