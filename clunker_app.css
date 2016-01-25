@@ -19,10 +19,40 @@ body {
 background-image:url("chicago.jpg");
 background-size: cover;
 
-position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -45%);
+position:fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -45%);
+}
+
+.transbox {
+  margin:100px;
+  background-color:white;
+  opacity:0.6;
+  filter:alpha(opacity=60);
+}
+.nav {
+  position:fixed;
+  width:100%;
+  top:0;
+  height:40px;
+  background:#d2edf4;
+  background-image:linear-gradient(to bottom, #e1e5f0, #79bbff 100%);
+  filter:alpha(opacity=60);
+}
+.nav ul {
+  margin:0;
+  padding:0;
+}
+.nav ul li {
+  list-style:none;
+}
+.nav ul li a {
+  text-decoration:none;
+  float:left;
+  display:block;
+  padding: 10px 20px;
+  color:black;
 }
 /*.email {
   width:200px;

@@ -1,13 +1,68 @@
-Router.route('/listings', function() {
-	this.render('listings');
+Posts = new Mongo.Collection('posts');
+
+Router.route('/posts',function() {
+  this.render('posts');
+  this.layout('posts');
+});
+
+Router.route('/', function() {
+	this.render('home');
+	this.layout('layouttwo');
+});
+
+Router.route('/home', function() {
+	this.render('home');
 	this.layout('layout');
    {
-  name: 'listings.show'
+  name: 'listing.show'
 }
 });
 
 
 if (Meteor.isClient) {
+  Meteor.subscribe("listing");
+
+  Template.home.events({
+    'submit form':function(event) {
+     event.preventDefault();
+
+      var destinationBox = $(event.target).find('textarea[name=destination]');
+      var destination = destinationBox.val();
+
+      var monthBox = $(event.target).find('input[name=DOBMonth]');
+      var month = monthBox.val();
+
+      var dayBox = $(event.target).find('input[name=DOBDay]');
+      var day = dayBox.val();
+
+      var timeBox = $(event.target).find('input[name=DOBTime]');
+      var time = timeBox.val();
+
+      var ampmBox = $(event.target).find('input[name=DOBAmPm]');
+      var ampm = ampmBox.val();
+
+      var nameBox = $(event.target).find('input[name=userName]');
+      var name = nameBox.val();
+
+      var unixBox = $(event.target).find('input[name=unix]');
+      var unix = unixBox.val();
+
+      var phoneBox = $(event.target).find('input[name=phoneNumber]');
+      var phoneNumber = phoneBox.val();
+
+      home.insert({destination: destination, month: month, day: day, time: time, ampm: ampm, name: name, unix: unix, phone: phoneNumber });
+
+      destinationBox.val('');
+      monthBox.val('');
+      dayBox.val('');
+      timeBox.val('');
+      ampmBox.val('');
+      nameBox.val('');
+      unixBox.val('');
+      phoneBox.val('');
+    }
+  });
+
   Template.signup.events({
     'submit form': function(event) {
       event.preventDefault();
@@ -40,8 +95,11 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    // code to run on server at startup
   });
+  Meteor.publish("listing", function () {
+      return Messages.find();
+    });
+
   Accounts.config({
     restrictCreationByEmailDomain: 'williams.edu',
     sendVerificationEmail: true
@@ -56,4 +114,8 @@ if (Meteor.isServer) {
     return text;
   };
   Accounts.emailTemplates.from = "ClunkerU Accounts <no-reply@meteor.com>"
+
+  Meteor.publish("messages", function () {
+    return Messages.find();
+  });
 }
