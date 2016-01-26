@@ -1,6 +1,16 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald:400,300,700);
 $amount: 1;
 $colorWhite:white;
+$colorWhite: #FFFFFF;
+$amount: 1;
+
+html {
+  background: url("chicago.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
 html {
   background: url("chicago.jpg") no-repeat center center fixed;
@@ -11,7 +21,7 @@ html {
 }
 h1 {
  font-size: 130px;
- color:white;
+ color:$colorWhite;
  opacity:0.7;
  font-family: "Oswald", monospace;
  position: fixed;
@@ -21,11 +31,12 @@ h1 {
  font-style:oblique;
 }
 h2 {
-  color:white;
+  color:$colorWhite;
   opacity:0.7;
   font-family: "Oswald", monospace;
 }
 body {
+background-color: transparentize($colorWhite, $amount);
 background-position: bottom center;
 position:fixed;
 top: 50%;

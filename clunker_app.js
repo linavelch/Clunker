@@ -6,15 +6,9 @@ Router.route('/posts',function() {
 });
 
 Router.route('/', function() {
-	this.render('home');
+	this.render('listings');
 	this.layout('layouttwo');
 });
-
-Router.route('/home', function() {
-	this.render('home');
-	this.layout('layout');
-});
-
 
 Router.route('/listings', function() {
 	this.render('listings');
