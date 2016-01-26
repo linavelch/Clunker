@@ -191,3 +191,38 @@
 <template name="listings1">
   <p>This is an app created in CSCI16 over winter study.</p>
 </template>
+
+<template name="register">
+  <body>
+  <h1>Sign up for a Clunker Account</h1>
+  {{> signUp}}
+</body>
+
+  <div class='col-xs-3'>
+    <form>
+      <div class="form-signUp">
+        <label for="classYear">Class Year</label>
+        <input type="text" class="form-control" name="classYear" />
+      </div>
+      <div class= "form-signUp">
+        <h4>Would you like to offer rides?</h4>
+        <label for="choice1">Yes</label>
+        <input type="radio" name="choices" value="choice1">
+        <label for="choice2">No</label>
+        <input type="radio" name="choices" value="choice2">
+      </div>
+      <div class="form-signUp">
+        <label for="carModel">Car Make and Model</label>
+        <input type="text" class="form-control" name="carModel" />
+      </div>
+      <div class="form-signUp">
+        <label for="mpg">Miles per Gallon</label>
+        <input type="text" class="form-control" name="mpg" />
+      </div>
+      <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+    {{#each messages}}
+      <p><strong>{{ name }}</strong>: {{ message }} - <span class="small">{{ createdOn }}</span></p>
+    {{/each}}
+  </div>
+</template>
