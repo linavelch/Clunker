@@ -22,3 +22,4 @@ accounts-password
 iron:router
 twbs:bootstrap
 email
+fourseven:scss
