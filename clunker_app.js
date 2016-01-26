@@ -13,9 +13,6 @@ Router.route('/', function() {
 Router.route('/home', function() {
 	this.render('home');
 	this.layout('layout');
-   {
-  name: 'listing.show'
-}
 });
 
 
@@ -78,6 +75,15 @@ if (Meteor.isClient) {
       Router.go('/listings')
     }
   });
+
+  Template.listings.events({
+    'click .delete':function(e) {
+      e.preventDefault();
+      var currentPostId = this._id;
+      Posts.remove(currentPostId);
+    }
+  });
+
 
   Template.signup.events({
     'submit form': function(event) {

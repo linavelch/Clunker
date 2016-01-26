@@ -25,7 +25,7 @@
   <h2>Sign Up:</h2>
   <form>
     <input class="email" type="email" name="signupEmail" placeholder="Email">
-    <input class="password" type="password" name="signupPassword" placeholder="Password">
+    <p><input class="password" type="password" name="signupPassword" placeholder="Password"></p>
     <input class="submit" type="submit" value="Signup">
   </form>
 </template>
@@ -34,23 +34,25 @@
   <h2>Log In:</h2>
   <form>
     <input class="email" type="email" name="loginEmail" placeholder="Email">
-    <input class="password" type="password" name="loginPassword" placeholder="Password">
+    <p><input class="password" type="password" name="loginPassword" placeholder="Password"></p>
     <input class="submit" type="submit" value="Login">
   </form>
 </template>
 
 <template name="listings">
+<div class="transbox">
   {{#each listings}}
-      <p class="listing"><a href="{{pathFor route='listing.show'}}">
-        <strong>{{ destination }}</strong>
-        <p>{{ month }}, {{ day }} ( {{ time }} {{ ampm }} )</p>
-        <p>{{ name }}</p>
-        <p>{{ unix }}</p>
-        <p>{{ phone }}</p>
-        <p><button class="delete">&times;</button></p>
-        </a>
-      </p>
+      <p class="listing"><a href="{{pathFor route='listings'}}"></a></p>
+        <p><strong>{{ destination }}</strong></p>
+        <ul>
+          <li>{{ month }}, {{ day }} ( {{ time }} {{ ampm }} )</li>
+          <li>{{ name }}</li>
+          <li>{{ unix }}</li>
+          <li>{{ phone }}</li>
+          <button class="delete">&times;</button>
+      </ul>
     {{/each}}
+  </div>
 </template>
 
 <template name="posts">
