@@ -7,7 +7,7 @@
 
 <template name="layouttwo">
     <h1>ClunkerU</h1>
-    {{#if currentUser}}
+    {{#if current}}
       {{> settings}}
     {{else}}
       {{> signup}}
@@ -193,9 +193,9 @@
 </template>
 
 <template name="register">
-  <h1>Sign up for a Clunker Account</h1>
-  {{> signUp}}
-  <div class='col-xs-3'>
+  <div class="transbox">
+    <h1>Sign up for a Clunker Account</h1>
+    {{> signup}}
     <form>
       <div class="form-signUp">
         <label for="classYear">Class Year</label>
@@ -209,11 +209,11 @@
         <input type="radio" name="choices" value="choice2">
       </div>
       <div class="form-signUp">
-        <label for="carModel">Car Make and Model</label>
+        <label for="carModel">Car Make and Model:</label>
         <input type="text" class="form-control" name="carModel" />
       </div>
       <div class="form-signUp">
-        <label for="mpg">Miles per Gallon</label>
+        <label for="mpg">Miles per Gallon:</label>
         <input type="text" class="form-control" name="mpg" />
       </div>
   </form>

@@ -29,7 +29,7 @@ Router.route('/listings', function() {
 
 Router.route('/register', function() {
 	this.render('register');
-	this.layout('register');
+	this.layout('layout');
 });
 
 
@@ -84,9 +84,17 @@ if (Meteor.isClient) {
       event.preventDefault();
       var emailVar = event.target.signupEmail.value;
       var passwordVar = event.target.signupPassword.value;
+      var classYearVar= event.target.classYear.value;
+      var offerRideVar=event.target.choices.value;
+      var makeModelVar=event.target.carModel.value;
+      var mpgVar=event.target.mpg.value;
       Accounts.createUser({
         email: emailVar,
-        password: passwordVar
+        password: passwordVar,
+        classclassYearVar
+        offerRideVar
+        makeModelVar
+        mpgVar
       });
     }
   });
