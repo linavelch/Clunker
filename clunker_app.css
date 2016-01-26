@@ -1,9 +1,10 @@
-/* CSS declarations go here */
+@import url(https://fonts.googleapis.com/css?family=Oswald:400,300,700);
+
 h1 {
- font-size: 150px;
+ font-size: 130px;
  color:white;
  opacity:0.7;
- font-family: "Lucida Console", monospace;
+ font-family: "Oswald", monospace;
  position: fixed;
  top:20%;
  left:50%;
@@ -13,18 +14,52 @@ h1 {
 h2 {
   color:white;
   opacity:0.7;
-  font-family: "Lucida Console", monospace;
+  font-family: "Oswald", monospace;
 }
 body {
 background-image:url("chicago.jpg");
-background-size: cover;
-
-position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -45%);
+//background-size: cover;
+background-position: right 45 px;
+position:fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -45%);
 }
-/*.email {
+
+.transbox {
+  padding: 10px 10px 10px 10px;
+  position:relative;
+  width:600px;
+  height:500px;
+  margin:100px;
+  background-color:white;
+  opacity:0.8;
+  filter:alpha(opacity=60);
+}
+.nav {
+  position:fixed;
+  width:100%;
+  top:0;
+  height:40px;
+  background:#d2edf4;
+  background-image:linear-gradient(to bottom, #e1e5f0, #79bbff 100%);
+  filter:alpha(opacity=60);
+}
+.nav ul {
+  margin:0;
+  padding:0;
+}
+.nav ul li {
+  list-style:none;
+}
+.nav ul li a {
+  text-decoration:none;
+  float:left;
+  display:block;
+  padding: 10px 20px;
+  color:black;
+}
+.email {
   width:200px;
   height:25px;
   background:rgba(255,255,255,0.8);
@@ -40,7 +75,7 @@ position: fixed;
   font-family: "Lucida Console", monospace;
   border-width:0px;
 }
-submit {
+.submit {
   	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
   	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
   	box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -65,4 +100,10 @@ submit {
   	padding:6px 24px;
   	text-decoration:none;
   	text-shadow:0px 1px 0px #ffffff;
-}*/
+}
+.form-control {
+    background:rgba(255,255,255,0.8);
+    font-size:15px;
+    font-family: "Lucida Console", monospace;
+    border-width:1px;
+}
