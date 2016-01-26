@@ -6,6 +6,14 @@ Router.route('/listings', function() {
 }
 });
 
+Router.route('/register', function() {
+	this.render('register');
+	this.layout('layout');
+   {
+  name: 'register.show'
+}
+});
+
 
 if (Meteor.isClient) {
   Template.signup.events({
