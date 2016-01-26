@@ -114,3 +114,7 @@ transform: translate(-50%, -45%);
     font-family: "Lucida Console", monospace;
     border-width:1px;
 }
+.listing {
+    font-size:15px;
+    float:left;
+}

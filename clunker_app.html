@@ -40,11 +40,10 @@
 </template>
 
 <template name="listings">
-  <h1>Hello</h1>
   {{#each listings}}
       <p class="listing"><a href="{{pathFor route='listing.show'}}">
         <strong>{{ destination }}</strong>
-        <p><i>{{ month }}, {{ day }} ( {{ time }} {{ ampm }} )</i></p>
+        <p>{{ month }}, {{ day }} ( {{ time }} {{ ampm }} )</p>
         <p>{{ name }}</p>
         <p>{{ unix }}</p>
         <p>{{ phone }}</p>
