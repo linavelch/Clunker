@@ -59,6 +59,13 @@ transform: translate(-50%, -45%);
   padding: 10px 20px;
   color:black;
 }
+.nav ul li:hover {
+  background-color:white;
+}
+.nav ul li a:hover {
+  color:white;
+  text-decoration:none;
+}
 .email {
   width:200px;
   height:25px;

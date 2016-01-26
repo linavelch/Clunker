@@ -18,11 +18,19 @@ Router.route('/home', function() {
 }
 });
 
+Router.route('/listings', function() {
+	this.render('listings');
+	this.layout('layout');
+   {
+  name: 'listings'
+}
+});
+
 
 if (Meteor.isClient) {
-  Meteor.subscribe("listing");
+  Meteor.subscribe("posts");
 
-  Template.home.events({
+  Template.posts.events({
     'submit form':function(event) {
      event.preventDefault();
 
@@ -50,7 +58,7 @@ if (Meteor.isClient) {
       var phoneBox = $(event.target).find('input[name=phoneNumber]');
       var phoneNumber = phoneBox.val();
 
-      home.insert({destination: destination, month: month, day: day, time: time, ampm: ampm, name: name, unix: unix, phone: phoneNumber });
+      Posts.insert({destination: destination, month: month, day: day, time: time, ampm: ampm, name: name, unix: unix, phone: phoneNumber });
 
       destinationBox.val('');
       monthBox.val('');
@@ -60,6 +68,8 @@ if (Meteor.isClient) {
       nameBox.val('');
       unixBox.val('');
       phoneBox.val('');
+
+      Router.go('/listings')
     }
   });
 
@@ -91,14 +101,16 @@ if (Meteor.isClient) {
       Meteor.logout();
     }
   });
+  Template.listings.helpers({
+    listings: function() {
+      return Posts.find();
+    }
+  })
 }
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
   });
-  Meteor.publish("listing", function () {
-      return Messages.find();
-    });
 
   Accounts.config({
     restrictCreationByEmailDomain: 'williams.edu',
@@ -115,7 +127,7 @@ if (Meteor.isServer) {
   };
   Accounts.emailTemplates.from = "ClunkerU Accounts <no-reply@meteor.com>"
 
-  Meteor.publish("messages", function () {
-    return Messages.find();
+  Meteor.publish("posts", function () {
+    return Posts.find();
   });
 }

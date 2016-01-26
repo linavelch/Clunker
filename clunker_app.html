@@ -2,7 +2,7 @@
   <head>
     <title>Clunker</title>
   </head>
-
+  {{> yield}}
 </template>
 
 <template name="layouttwo">
@@ -39,14 +39,15 @@
   </form>
 </template>
 
-<template name="home">
-  {{#each listing}}
+<template name="listings">
+  <h1>Hello</h1>
+  {{#each listings}}
       <p class="listing"><a href="{{pathFor route='listing.show'}}">
         <strong>{{ destination }}</strong>
         <p><i>{{ month }}, {{ day }} ( {{ time }} {{ ampm }} )</i></p>
         <p>{{ name }}</p>
         <p>{{ unix }}</p>
-        <p>{{ phone number }}</p>
+        <p>{{ phone }}</p>
         <p><button class="delete">&times;</button></p>
         </a>
       </p>
@@ -55,6 +56,7 @@
 
 <template name="posts">
   <div class="nav">
+    <div class="nav_wrapper">
       <ul>
         <li><a href="#">Home</a></li>
         <li><a href="#">Post a Ride</a></li>
@@ -63,10 +65,12 @@
         <li><a href="#">Profile Search</a></li>
       </ul>
     </div>
+  </div>
 
 <div class="transbox">
   <h4>Post a Ride</h4>
 
+<form>
 <div class="form-group">
   <label for="userName">Name:</label>
   <input type="text" class="form-control" name="userName"/>
@@ -181,9 +185,10 @@
   </div>
 
   <button class="submit2">Post Ride</button>
+</form>
 </div>
 </template>
 
-<template name="listings">
+<template name="listings1">
   <p>This is an app created in CSCI16 over winter study.</p>
 </template>
