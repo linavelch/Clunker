@@ -20,10 +20,7 @@ Router.route('/home', function() {
 
 Router.route('/register', function() {
 	this.render('register');
-	this.layout('layout');
-   {
-  name: 'register.show'
-}
+	this.layout('register');
 });
 
 
