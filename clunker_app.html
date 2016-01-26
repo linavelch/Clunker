@@ -98,7 +98,7 @@
     <select name="DOBMonth">
       <option> - Month - </option>
       <option value="January">January</option>
-      <option value="Febuary">Febuary</option>
+      <option value="February">February</option>
       <option value="March">March</option>
       <option value="April">April</option>
       <option value="May">May</option>
@@ -195,11 +195,8 @@
 </template>
 
 <template name="register">
-  <body>
   <h1>Sign up for a Clunker Account</h1>
   {{> signUp}}
-</body>
-
   <div class='col-xs-3'>
     <form>
       <div class="form-signUp">
@@ -221,8 +218,8 @@
         <label for="mpg">Miles per Gallon</label>
         <input type="text" class="form-control" name="mpg" />
       </div>
-      <button type="submit" class="btn btn-primary">Register</button>
-    </form>
+  </form>
+  <button type="submit" class="btn btn-primary">Register</button>
     {{#each messages}}
       <p><strong>{{ name }}</strong>: {{ message }} - <span class="small">{{ createdOn }}</span></p>
     {{/each}}
