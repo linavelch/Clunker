@@ -7,11 +7,11 @@
 
 <template name="layouttwo">
     <h1>ClunkerU</h1>
-    {{#if currentUser}}
+    {{#if current}}
       {{> settings}}
     {{else}}
-      {{> signup}}
       {{> login}}
+      {{> signupbutton}}
     {{/if}}
 
     {{> yield }}
@@ -37,6 +37,10 @@
     <input class="password" type="password" name="loginPassword" placeholder="Password">
     <input class="submit" type="submit" value="Login">
   </form>
+</template>
+
+<template name="signupbutton">
+  <button onclick="location.href = 'http://localhost:3000/signup';" id="myButton" class="float-left submit-button" >Sign Up</button>
 </template>
 
 <template name="listings">
@@ -212,7 +216,27 @@
   <h1>Sign up for a Clunker Account</h1>
   {{> signUp}}
   <div class='col-xs-3'>
+
+<template name="listings1">
+  <p>This is an app created in CSCI16 over winter study.</p>
+</template>
+
+<template name="signup">
+  <div class="transbox">
+    <h2>Sign up for a Clunker Account</h2>
     <form>
+      <div class="form-signUp">
+        <label for="fullName">First and Last Name</label>
+        <input type="text" class="form-control" name="fullName" />
+      </div>
+      <div class="form-signUp">
+      <input class="email" type="email" name="signupEmail" placeholder="Email">
+      <p><input class="password" type="password" name="signupPassword" placeholder="Password"></p>
+      </div>
+      <div class="form-signUp">
+        <label for="phoneNumber">Phone Number</label>
+        <input type="text" class="form-control" name="phoneNumber" />
+      </div>
       <div class="form-signUp">
         <label for="classYear">Class Year</label>
         <input type="text" class="form-control" name="classYear" />
@@ -225,17 +249,38 @@
         <input type="radio" name="choices" value="choice2">
       </div>
       <div class="form-signUp">
-        <label for="carModel">Car Make and Model</label>
+        <label for="carModel">Car Make and Model:</label>
         <input type="text" class="form-control" name="carModel" />
       </div>
       <div class="form-signUp">
-        <label for="mpg">Miles per Gallon</label>
+        <label for="mpg">Miles per Gallon:</label>
         <input type="text" class="form-control" name="mpg" />
       </div>
+      <input class="submit" type="submit" value="Signup">
   </form>
-  <button type="submit" class="btn btn-primary">Register</button>
     {{#each messages}}
       <p><strong>{{ name }}</strong>: {{ message }} - <span class="small">{{ createdOn }}</span></p>
     {{/each}}
   </div>
+</template>
+
+<template name="user">
+  <p>{{name}}</p>
+  <p>{{email}}</p>
+  <p>{{phoneNumber}}</p>
+  <p>{{carMake}}{{carModel}}</p>
+  <p>{{milesPerGallon}}</p>
+</template>
+
+<template name="Your_profile">
+  {{#with currentUser}}
+      {{#with profile}}
+          {{namefl}}
+          {{email}}
+          {{phone_number}}
+          {{car_make}}
+          {{car_model}}
+          {{miles_pergallon}}
+        {{/with}}
+    {{/with}}
 </template>
