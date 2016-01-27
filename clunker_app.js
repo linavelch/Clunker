@@ -6,10 +6,11 @@ Router.route('/posts',function() {
 });
 
 Router.route('/', function() {
-	this.render('home');
+	this.render('listings');
 	this.layout('layouttwo');
 });
 
+<<<<<<< HEAD
 Router.route('/home', function() {
 	this.render('home');
 	this.layout('layout');
@@ -19,6 +20,8 @@ Router.route('/home', function() {
 });
 
 
+=======
+>>>>>>> 20c76c7f9c9c6a2b051b43abe4bb4c030a76e5f2
 Router.route('/listings', function() {
 	this.render('listings');
 	this.layout('layout');

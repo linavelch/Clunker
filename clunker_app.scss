@@ -1,4 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald:400,300,700);
+$amount: 1;
+$colorWhite:white;
 $colorWhite: #FFFFFF;
 $amount: 1;
 
@@ -10,6 +12,13 @@ html {
   background-size: cover;
 }
 
+html {
+  background: url("chicago.jpg") no-repeat center center fixed;
+  -webkit-background-size:cover;
+  -moz-background-size:cover;
+  -o-background-size:cover;
+  background-size:cover;
+}
 h1 {
  font-size: 130px;
  color:$colorWhite;
@@ -33,6 +42,7 @@ position:fixed;
 top: 50%;
 left: 50%;
 transform: translate(-50%, -45%);
+background-color:transparentize($colorWhite, $amount);
 }
 
 .transbox {
@@ -115,4 +125,12 @@ transform: translate(-50%, -45%);
     font-size:15px;
     font-family: "Lucida Console", monospace;
     border-width:1px;
+}
+.transbox2 {
+  width:100%;
+  height:100%;
+  margin:0;
+  background-color:white;
+  opacity:0.8;
+  filter:alpha(opacity=60);
 }

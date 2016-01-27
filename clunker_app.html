@@ -35,7 +35,7 @@
 </template>
 
 <template name="listings">
-<div class="transbox">
+<div class="transbox2">
   {{#each listings}}
       <p class="listing"><a href="{{pathFor route='listings'}}"></a></p>
         <p><strong>{{ destination }}</strong></p>
@@ -54,11 +54,11 @@
   <div class="nav">
     <div class="nav_wrapper">
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Post a Ride</a></li>
-        <li><a href="#">Past Rides</a></li>
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Profile Search</a></li>
+        <li><a href="{{pathFor route='listings'}}">Listings</a></li>
+        <li><a href="{{pathFor route='posts'}}">Post a Ride</a></li>
+        <li><a href="{{pathFor route='pastrides'}}">Past Rides</a></li>
+        <li><a href="{{pathFor route='register'}}">Profile</a></li>
+        <li><a href="{{pathFor route='profilesearch'}}">Profile Search</a></li>
       </ul>
     </div>
   </div>
