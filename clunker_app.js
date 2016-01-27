@@ -16,6 +16,10 @@ Router.route('/searchprofiles', function(){
 	this.layout('layoutfour')
 });
 
+Router.route('/signup', function() {
+   this.render('signup');
+   this.layout('layout');
+});
 if (Meteor.isClient) {
   Meteor.subscribe("listing");
 
@@ -63,11 +67,23 @@ if (Meteor.isClient) {
   Template.signup.events({
     'submit form': function(event) {
       event.preventDefault();
+      var fullNameVar = event.target.fullName.value;
       var emailVar = event.target.signupEmail.value;
       var passwordVar = event.target.signupPassword.value;
+      var phoneVar= event.target.phoneNumber.value;
+      var classYearVar= event.target.classYear.value;
+      var offerRideVar=event.target.choices.value;
+      var makeModelVar=event.target.carModel.value;
+      var mpgVar=event.target.mpg.value;
       Accounts.createUser({
+        name:fullNameVar,
         email: emailVar,
-        password: passwordVar
+        phoneNumber: phoneVar,
+        password: passwordVar,
+        class:classYearVar,
+        offering:offerRideVar,
+        carType:makeModelVar,
+        mpg:mpgVar,
       });
     }
   });
