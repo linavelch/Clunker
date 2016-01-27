@@ -21,11 +21,20 @@
   <p><a href="#" class="logout">Logout</a></p>
 </template>
 
+<template name="signup">
+  <h2>Sign Up:</h2>
+  <form>
+    <input class="email" type="email" name="signupEmail" placeholder="Email">
+    <input class="password" type="password" name="signupPassword" placeholder="Password">
+    <input class="submit" type="submit" value="Signup">
+  </form>
+</template>
+
 <template name="login">
   <h2>Log In:</h2>
   <form>
     <input class="email" type="email" name="loginEmail" placeholder="Email">
-    <p><input class="password" type="password" name="loginPassword" placeholder="Password"></p>
+    <input class="password" type="password" name="loginPassword" placeholder="Password">
     <input class="submit" type="submit" value="Login">
   </form>
 </template>
@@ -35,24 +44,7 @@
 </template>
 
 <template name="listings">
-<div class="transbox2">
-  {{#each listings}}
-      <p class="listing"><a href="{{pathFor route='listings'}}"></a></p>
-        <p><strong>{{ destination }}</strong></p>
-        <ul>
-          <li>{{ month }}, {{ day }} ( {{ time }} {{ ampm }} )</li>
-          <li>{{ name }}</li>
-          <li>{{ unix }}</li>
-          <li>{{ phone }}</li>
-          <button class="delete">&times;</button>
-      </ul>
-    {{/each}}
-  </div>
-</template>
-
-<template name="posts">
-  <div class="nav">
-    <div class="nav_wrapper">
+  <nav class="nav">
       <ul>
         <li><a href="{{pathFor route='listings'}}">Listings</a></li>
         <li><a href="{{pathFor route='posts'}}">Post a Ride</a></li>
@@ -60,31 +52,66 @@
         <li><a href="{{pathFor route='register'}}">Profile</a></li>
         <li><a href="{{pathFor route='profilesearch'}}">Profile Search</a></li>
       </ul>
+    </nav>
+<div class="transbox2">
+    <h3><u>Available Rides</u></h3>
+    <div class="searchride">
+      <form action="#">
+        <input type="text" name="search" placeholder="Search Destination...">
+        <input type="submit" value="Search"/>
+      </form>
     </div>
+    <p>_____________________________________________________________________________________________________________</p>
+  {{#each listings}}
+      <p class="listing"><a href="{{pathFor route='listings'}}"></a></p>
+      <p>Destination: <strong>{{ destination }}</strong></p>
+      <p>Departure Info: <i>{{ month }} {{ day }}, ( {{ time }} {{ ampm }} )</i></p>
+      Driver:
+        <ul>
+          <li>{{ name }}</li>
+          <li>{{ unix }}</li>
+          <li>{{ phone }}</li>
+        </ul>
+      <p><button class="catch">Catch a Ride</button>
+      <button class="delete">Cancel</button></p>
+      <p>_____________________________________________________________________________________________________________</p>
+    {{/each}}
+  </div>
+</template>
+
+<template name="posts">
+  <div class="nav">
+      <ul>
+        <li><a href="{{pathFor route='listings'}}">Listings</a></li>
+        <li><a href="{{pathFor route='posts'}}">Post a Ride</a></li>
+        <li><a href="{{pathFor route='pastrides'}}">Past Rides</a></li>
+        <li><a href="{{pathFor route='register'}}">Profile</a></li>
+        <li><a href="{{pathFor route='profilesearch'}}">Profile Search</a></li>
+      </ul>
   </div>
 
 <div class="transbox">
-  <h4>Post a Ride</h4>
+  <h4><u>Post a Ride</u></h4>
 
 <form>
 <div class="form-group">
   <label for="userName">Name:</label>
-  <input type="text" class="form-control" name="userName"/>
+  <input type="text" class="form-control" name="userName" required="required"/>
 </div>
 
 <div class="form-group">
   <label for="unix">Unix:</label>
-  <input type="text" class="form-control" name="unix"/>
+  <input type="text" class="form-control" name="unix" required="required"/>
 </div>
 
 <div class="form-group">
   <label for="phoneNumber">Phone Number:</label>
-  <input type="number" class="form-control" name="phoneNumber"/>
+  <input type="number" class="form-control" name="phoneNumber" required="required"/>
 </div>
 
 <div class="form-group">
       <label for="destination">Destination:</label>
-      <textarea name="destination" class="form-control" cols="30" rows="3"></textarea>
+      <textarea name="destination" class="form-control" cols="30" rows="3" required="required"></textarea>
     </div>
 
   <div class="form-group">
@@ -184,6 +211,11 @@
 </form>
 </div>
 </template>
+
+<template name="register">
+  <h1>Sign up for a Clunker Account</h1>
+  {{> signUp}}
+  <div class='col-xs-3'>
 
 <template name="listings1">
   <p>This is an app created in CSCI16 over winter study.</p>

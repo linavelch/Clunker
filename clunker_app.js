@@ -6,6 +6,10 @@ Router.route('/posts',function() {
   this.layout('posts');
 });
 
+Router.route('/', function() {
+	this.render('');
+	this.layout('layouttwo');
+
 Router.route('/profile', function(){
 	this.render('Your profile');
 	this.layout('user')
@@ -30,16 +34,16 @@ if (Meteor.isClient) {
       var destinationBox = $(event.target).find('textarea[name=destination]');
       var destination = destinationBox.val();
 
-      var monthBox = $(event.target).find('input[name=DOBMonth]');
+      var monthBox = $(event.target).find('select[name=DOBMonth]');
       var month = monthBox.val();
 
-      var dayBox = $(event.target).find('input[name=DOBDay]');
+      var dayBox = $(event.target).find('select[name=DOBDay]');
       var day = dayBox.val();
 
-      var timeBox = $(event.target).find('input[name=DOBTime]');
+      var timeBox = $(event.target).find('select[name=DOBTime]');
       var time = timeBox.val();
 
-      var ampmBox = $(event.target).find('input[name=DOBAmPm]');
+      var ampmBox = $(event.target).find('select[name=DOBAmPm]');
       var ampm = ampmBox.val();
 
       var nameBox = $(event.target).find('input[name=userName]');
@@ -87,6 +91,7 @@ if (Meteor.isClient) {
       });
     }
   });
+
   Template.login.events({
     'submit form': function(event) {
       event.preventDefault();
@@ -96,8 +101,10 @@ if (Meteor.isClient) {
     if (false) {
       confirm('Wrong email or password!');
      }
+     Router.go('/listings')
   }
   });
+
   Template.settings.events({
     'click .logout': function(event) {
       event.preventDefault();
