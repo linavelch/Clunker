@@ -105,26 +105,26 @@ if (Meteor.isClient) {
     }
   });
 
-Meteor.subscribe("profile");
+Meteor.subscribe("profiles");
 
 Template.user.helpers({
-	name: function() {
-		return Meteor.user().profile.namefl;
-	}
-  email: function() {
-		return Meteor.user().profile.email;
-	}
-	phoneNumber: function() {
-		return Meteor.user().profile.phone_number;
-	}
-	carMake: function() {
-		return Meteor.user().profile.car_make;
-	}
-	carModel: function() {
-		return Meteor.user().profile.car_model;
-	}
-	milesPerGallon: function() {
-		return Meteor.user().profile.miles_pergallon;
+	'nameVar': function() {
+		return Meteor.user().profile.fullName;
+	},
+  'emailVar': function() {
+		return Meteor.user().profile.signupEmail;
+	},
+	'phoneVar': function() {
+		return Meteor.user().profile.phoneNumber;
+	},
+  'classYearVar': function() {
+		return Meteor.user().profile.classYear;
+	},
+	'makeModelVar': function() {
+		return Meteor.user().profile.carModel;
+	},
+	'mpgVar': function() {
+		return Meteor.user().profile.mpg;
 	}
 });
 
@@ -155,6 +155,8 @@ if (Meteor.isServer) {
   Meteor.publish("messages", function () {
     return Messages.find();
   });
-}
 
-if (Meteor.isServer) {
+  Meteor.publish("profiles", function () {
+  return Profiles.find();
+});
+}

@@ -233,22 +233,23 @@
 </template>
 
 <template name="user">
-  <p>{{name}}</p>
-  <p>{{email}}</p>
-  <p>{{phoneNumber}}</p>
-  <p>{{carMake}}{{carModel}}</p>
-  <p>{{milesPerGallon}}</p>
+  <p>{{nameVar}}</p>
+  <p>{{emailVar}}</p>
+  <p>{{phoneVar}}</p>
+  <p>{{classYearVar}}</p>
+  <p>{{makeModelVar}}</p>
+  <p>{{mpgVar}}</p>
 </template>
 
 <template name="Your_profile">
   {{#with currentUser}}
       {{#with profile}}
-          {{namefl}}
-          {{email}}
-          {{phone_number}}
-          {{car_make}}
-          {{car_model}}
-          {{miles_pergallon}}
+          {{fullName}}
+          {{signupEmail}}
+          {{phoneNumber}}
+          {{classYear}}
+          {{carMake}}
+          {{mpg}}
         {{/with}}
     {{/with}}
 </template>
