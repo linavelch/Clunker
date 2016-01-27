@@ -225,3 +225,24 @@
     {{/each}}
   </div>
 </template>
+
+<template name="user">
+  <p>{{name}}</p>
+  <p>{{unixNum}}</p>
+  <p>{{phoneNumber}}</p>
+  <p>{{carMake}}{{carModel}}</p>
+  <p>{{milesPerGallon}}</p>
+</template>
+
+<template name="Your_profile">
+  {{#with currentUser}}
+      {{#with profile}}
+          {{namefl}}
+          {{unix}}
+          {{phone_number}}
+          {{car_make}}
+          {{car_model}}
+          {{miles_pergallon}}
+        {{/with}}
+    {{/with}}
+</template>

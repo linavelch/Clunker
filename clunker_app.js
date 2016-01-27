@@ -5,29 +5,20 @@ Router.route('/posts',function() {
   this.layout('posts');
 });
 
-Router.route('/', function() {
-	this.render('listings');
-	this.layout('layouttwo');
+Router.route('/profile', function(){
+	this.render('Your profile');
+	this.layout('user')
 });
 
-Router.route('/listings', function() {
-	this.render('listings');
-	this.layout('layout');
-   {
-  name: 'listings'
-}
+Router.route('/searchprofiles', function(){
+	this.render('Profile Search')
+	this.layout('layoutfour')
 });
-
-Router.route('/register', function() {
-	this.render('register');
-	this.layout('register');
-});
-
 
 if (Meteor.isClient) {
-  Meteor.subscribe("posts");
+  Meteor.subscribe("listing");
 
-  Template.posts.events({
+  Template.home.events({
     'submit form':function(event) {
      event.preventDefault();
 
@@ -55,7 +46,7 @@ if (Meteor.isClient) {
       var phoneBox = $(event.target).find('input[name=phoneNumber]');
       var phoneNumber = phoneBox.val();
 
-      Posts.insert({destination: destination, month: month, day: day, time: time, ampm: ampm, name: name, unix: unix, phone: phoneNumber });
+      home.insert({destination: destination, month: month, day: day, time: time, ampm: ampm, name: name, unix: unix, phone: phoneNumber });
 
       destinationBox.val('');
       monthBox.val('');
@@ -65,19 +56,8 @@ if (Meteor.isClient) {
       nameBox.val('');
       unixBox.val('');
       phoneBox.val('');
-
-      Router.go('/listings')
     }
   });
-
-  Template.listings.events({
-    'click .delete':function(e) {
-      e.preventDefault();
-      var currentPostId = this._id;
-      Posts.remove(currentPostId);
-    }
-  });
-
 
   Template.signup.events({
     'submit form': function(event) {
@@ -107,16 +87,38 @@ if (Meteor.isClient) {
       Meteor.logout();
     }
   });
-  Template.listings.helpers({
-    listings: function() {
-      return Posts.find();
-    }
-  })
+
+Meteor.subscribe("profile");
+
+Template.user.helpers({
+	name: function() {
+		return Meteor.user().profile.namefl;
+	}
+//  unixNum: function() {
+//		return Meteor.user().profile.unix;
+//	}
+	phoneNumber: function() {
+		return Meteor.user().profile.phone_number;
+	}
+	carMake: function() {
+		return Meteor.user().profile.car_make;
+	}
+	carModel: function() {
+		return Meteor.user().profile.car_model;
+	}
+	milesPerGallon: function() {
+		return Meteor.user().profile.miles_pergallon;
+	}
+});
+
 }
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
   });
+  Meteor.publish("listing", function () {
+      return Messages.find();
+    });
 
   Accounts.config({
     restrictCreationByEmailDomain: 'williams.edu',
@@ -133,7 +135,9 @@ if (Meteor.isServer) {
   };
   Accounts.emailTemplates.from = "ClunkerU Accounts <no-reply@meteor.com>"
 
-  Meteor.publish("posts", function () {
-    return Posts.find();
+  Meteor.publish("messages", function () {
+    return Messages.find();
   });
 }
+
+if (Meteor.isServer) {
