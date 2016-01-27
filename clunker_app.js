@@ -13,6 +13,9 @@ Router.route('/', function() {
 Router.route('/home', function() {
 	this.render('home');
 	this.layout('layout');
+   {
+  name: 'listing.show'
+}
 });
 
 
@@ -24,8 +27,8 @@ Router.route('/listings', function() {
 }
 });
 
-Router.route('/register', function() {
-	this.render('register');
+Router.route('/signup', function() {
+	this.render('signup');
 	this.layout('layout');
 });
 
@@ -76,15 +79,6 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.listings.events({
-    'click .delete':function(e) {
-      e.preventDefault();
-      var currentPostId = this._id;
-      Posts.remove(currentPostId);
-    }
-  });
-
-
   Template.signup.events({
     'submit form': function(event) {
       event.preventDefault();
@@ -97,10 +91,10 @@ if (Meteor.isClient) {
       Accounts.createUser({
         email: emailVar,
         password: passwordVar,
-        classclassYearVar
-        offerRideVar
-        makeModelVar
-        mpgVar
+        profile:{class: classYearVar,
+        ride: offerRideVar,
+        typeCar:makeModelVar,
+        milesPerGallon:mpgVar}
       });
     }
   });
@@ -111,7 +105,7 @@ if (Meteor.isClient) {
       var passwordVar = event.target.loginPassword.value;
       Meteor.loginWithPassword(emailVar, passwordVar);
     if (false) {
-      confirm('Wrong email or password!');
+      confirm('Wrong email and/or password!');
      }
   }
   });
