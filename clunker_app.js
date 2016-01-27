@@ -1,4 +1,5 @@
 Posts = new Mongo.Collection('posts');
+Profiles = new Mongo.Collection('profiles');
 
 Router.route('/posts',function() {
   this.render('posts');
@@ -94,9 +95,9 @@ Template.user.helpers({
 	name: function() {
 		return Meteor.user().profile.namefl;
 	}
-//  unixNum: function() {
-//		return Meteor.user().profile.unix;
-//	}
+  email: function() {
+		return Meteor.user().profile.email;
+	}
 	phoneNumber: function() {
 		return Meteor.user().profile.phone_number;
 	}
