@@ -256,32 +256,40 @@
 </template>
 
 <template name="user">
-  <p>{{nameVar}}</p>
-  <p>{{emailVar}}</p>
-  <p>{{phoneVar}}</p>
-  <p>{{classYearVar}}</p>
-  <p>{{makeModelVar}}</p>
-  <p>{{mpgVar}}</p>
+  <div class="transbox">
+     {{>yield}}
+   </div>
 </template>
 
-<template name="Your_profile">
+<template name="yourProfile">
   <nav class="nav">
       <ul>
         <li><a href="{{pathFor route='listings'}}">Listings</a></li>
         <li><a href="{{pathFor route='posts'}}">Post a Ride</a></li>
-        <li><a href="{{pathFor route='pastrides'}}">Past Rides</a></li>
+        <!-- <li><a href="{{pathFor route='pastrides'}}">Past Rides</a></li> -->
         <li><a href="{{pathFor route='profile'}}">Profile</a></li>
-        <li><a href="{{pathFor route='profilesearch'}}">Profile Search</a></li>
+        <!-- <li><a href="{{pathFor route='profilesearch'}}">Profile Search</a></li> -->
       </ul>
     </nav>
-  {{#with currentUser}}
-      {{#with profile}}
-          {{fullName}}
-          {{signupEmail}}
-          {{phoneNumber}}
-          {{classYear}}
-          {{carMake}}
-          {{mpg}}
-        {{/with}}
-    {{/with}}
+    {{#with currentUser}}
+      <h2>a current user</h2>
+        <p>
+          Name: {{fullName}}
+        </p>
+        <p>
+          Email: {{signupEmail}}
+        </p>
+        <p>
+          Phone Number: {{phoneNumber}}
+        </p>
+        <p>
+          Class Year: {{classYear}}
+        </p>
+        <p>
+          Car: {{carMake}}
+        </p>
+        <p>
+          MPG: {{mpg}}
+        </p>
+      {{/with}}
 </template>
