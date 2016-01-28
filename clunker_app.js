@@ -9,25 +9,30 @@ Router.route('/posts',function() {
 Router.route('/', function() {
 	this.render('');
 	this.layout('layouttwo');
-
-Router.route('/profile', function(){
-	this.render('Your profile');
-	this.layout('user')
 });
 
-Router.route('/searchprofiles', function(){
-	this.render('Profile Search')
-	this.layout('layoutfour')
+Router.route('/listings', function() {
+	this.render('listings');
+	this.layout('layout');
+   {
+  name: 'listings'
+}
+});
+
+Router.route('/profile', function(){
+	this.render('Your_profile');
+	this.layout('user')
 });
 
 Router.route('/signup', function() {
    this.render('signup');
    this.layout('layout');
 });
-if (Meteor.isClient) {
-  Meteor.subscribe("listing");
 
-  Template.home.events({
+if (Meteor.isClient) {
+  Meteor.subscribe("posts");
+
+  Template.posts.events({
     'submit form':function(event) {
      event.preventDefault();
 
@@ -55,7 +60,7 @@ if (Meteor.isClient) {
       var phoneBox = $(event.target).find('input[name=phoneNumber]');
       var phoneNumber = phoneBox.val();
 
-      home.insert({destination: destination, month: month, day: day, time: time, ampm: ampm, name: name, unix: unix, phone: phoneNumber });
+      Posts.insert({destination: destination, month: month, day: day, time: time, ampm: ampm, name: name, unix: unix, phone: phoneNumber });
 
       destinationBox.val('');
       monthBox.val('');
@@ -65,7 +70,27 @@ if (Meteor.isClient) {
       nameBox.val('');
       unixBox.val('');
       phoneBox.val('');
+
+      Router.go('/listings')
     }
+  });
+
+  Template.listings.events({
+    'click .delete':function(e) {
+      e.preventDefault();
+      var currentPostId = this._id;
+      Posts.remove(currentPostId);
+
+      /*'click .catch':function(event) {
+       event.preventDefault();
+       var inc = 0;
+       var currentPostId = this._id;
+       inc = inc + 1;
+       if ( inc > 3 ) {
+         Posts.remove(currentPostId);
+         }
+       }*/
+     }
   });
 
   Template.signup.events({
@@ -89,6 +114,7 @@ if (Meteor.isClient) {
         carType:makeModelVar,
         mpg:mpgVar,
       });
+      Router.go('/profile')
     }
   });
 
@@ -98,10 +124,7 @@ if (Meteor.isClient) {
       var emailVar = event.target.loginEmail.value;
       var passwordVar = event.target.loginPassword.value;
       Meteor.loginWithPassword(emailVar, passwordVar);
-    if (false) {
-      confirm('Wrong email or password!');
-     }
-     Router.go('/listings')
+      Router.go('/listings')
   }
   });
 
@@ -112,37 +135,39 @@ if (Meteor.isClient) {
     }
   });
 
+  Template.listings.helpers({
+    listings: function() {
+      return Posts.find();
+    }
+  });
+
 Meteor.subscribe("profiles");
 
-Template.user.helpers({
-	'nameVar': function() {
-		return Meteor.user().profile.fullName;
-	},
-  'emailVar': function() {
-		return Meteor.user().profile.signupEmail;
-	},
-	'phoneVar': function() {
-		return Meteor.user().profile.phoneNumber;
-	},
-  'classYearVar': function() {
-		return Meteor.user().profile.classYear;
-	},
-	'makeModelVar': function() {
-		return Meteor.user().profile.carModel;
-	},
-	'mpgVar': function() {
-		return Meteor.user().profile.mpg;
-	}
-});
-
+  Template.user.helpers({
+  	'nameVar': function() {
+  		return Meteor.user().profile.fullName;
+  	},
+    'emailVar': function() {
+  		return Meteor.user().profile.signupEmail;
+  	},
+  	'phoneVar': function() {
+  		return Meteor.user().profile.phoneNumber;
+  	},
+    'classYearVar': function() {
+  		return Meteor.user().profile.classYear;
+  	},
+  	'makeModelVar': function() {
+  		return Meteor.user().profile.carModel;
+  	},
+  	'mpgVar': function() {
+  		return Meteor.user().profile.mpg;
+  	}
+  });
 }
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
   });
-  Meteor.publish("listing", function () {
-      return Messages.find();
-    });
 
   Accounts.config({
     restrictCreationByEmailDomain: 'williams.edu',
@@ -159,11 +184,7 @@ if (Meteor.isServer) {
   };
   Accounts.emailTemplates.from = "ClunkerU Accounts <no-reply@meteor.com>"
 
-  Meteor.publish("messages", function () {
-    return Messages.find();
+  Meteor.publish("posts", function () {
+    return Posts.find();
   });
-
-  Meteor.publish("profiles", function () {
-  return Profiles.find();
-});
 }

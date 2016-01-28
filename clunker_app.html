@@ -1,3 +1,4 @@
+
 <template name="layout">
   <head>
     <title>Clunker</title>
@@ -7,7 +8,7 @@
 
 <template name="layouttwo">
     <h1>ClunkerU</h1>
-    {{#if current}}
+    {{#if currentUser}}
       {{> settings}}
     {{else}}
       {{> login}}
@@ -31,6 +32,7 @@
 </template>
 
 <template name="signupbutton">
+  <h2>Sign Up:</h2>
   <button onclick="location.href = 'http://localhost:3000/signup';" id="myButton" class="float-left submit-button" >Sign Up</button>
 </template>
 
@@ -40,14 +42,14 @@
         <li><a href="{{pathFor route='listings'}}">Listings</a></li>
         <li><a href="{{pathFor route='posts'}}">Post a Ride</a></li>
         <li><a href="{{pathFor route='pastrides'}}">Past Rides</a></li>
-        <li><a href="{{pathFor route='register'}}">Profile</a></li>
+        <li><a href="{{pathFor route='profile'}}">Profile</a></li>
         <li><a href="{{pathFor route='profilesearch'}}">Profile Search</a></li>
       </ul>
     </nav>
 <div class="transbox2">
     <h3><u>Available Rides</u></h3>
     <div class="searchride">
-      <form action="#">
+      <form action="http://clunkeru.meteor.com">
         <input type="text" name="search" placeholder="Search Destination...">
         <input type="submit" value="Search"/>
       </form>
@@ -76,7 +78,7 @@
         <li><a href="{{pathFor route='listings'}}">Listings</a></li>
         <li><a href="{{pathFor route='posts'}}">Post a Ride</a></li>
         <li><a href="{{pathFor route='pastrides'}}">Past Rides</a></li>
-        <li><a href="{{pathFor route='register'}}">Profile</a></li>
+        <li><a href="{{pathFor route='profile'}}">Profile</a></li>
         <li><a href="{{pathFor route='profilesearch'}}">Profile Search</a></li>
       </ul>
   </div>
@@ -203,30 +205,25 @@
 </div>
 </template>
 
-
-<template name="listings1">
-  <p>This is an app created in CSCI16 over winter study.</p>
-</template>
-
 <template name="signup">
   <div class="transbox">
-    <h2>Sign up for a Clunker Account</h2>
+    <h3><u>Sign up for a Clunker Account</u></h3>
     <form>
       <div class="form-signUp">
-        <label for="fullName">First and Last Name</label>
-        <input type="text" class="form-control" name="fullName" />
+        <label for="fullName">First and Last Name:</label>
+        <input type="text" class="form-control" name="fullName" required="required"/>
       </div>
       <div class="form-signUp">
-      <input class="email" type="email" name="signupEmail" placeholder="Email">
-      <p><input class="password" type="password" name="signupPassword" placeholder="Password"></p>
+        <input class="email" type="email" name="signupEmail" placeholder="Email" required="required">
+        <p><input class="password" type="password" name="signupPassword" placeholder="Password" required="required"></p>
       </div>
       <div class="form-signUp">
-        <label for="phoneNumber">Phone Number</label>
-        <input type="text" class="form-control" name="phoneNumber" />
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" class="form-control" name="phoneNumber" required="required"/>
       </div>
       <div class="form-signUp">
-        <label for="classYear">Class Year</label>
-        <input type="text" class="form-control" name="classYear" />
+        <label for="classYear">Class Year:</label>
+        <input type="text" class="form-control" name="classYear" required="required"/>
       </div>
       <div class= "form-signUp">
         <h4>Would you like to offer rides?</h4>
@@ -261,6 +258,15 @@
 </template>
 
 <template name="Your_profile">
+  <nav class="nav">
+      <ul>
+        <li><a href="{{pathFor route='listings'}}">Listings</a></li>
+        <li><a href="{{pathFor route='posts'}}">Post a Ride</a></li>
+        <li><a href="{{pathFor route='pastrides'}}">Past Rides</a></li>
+        <li><a href="{{pathFor route='profile'}}">Profile</a></li>
+        <li><a href="{{pathFor route='profilesearch'}}">Profile Search</a></li>
+      </ul>
+    </nav>
   {{#with currentUser}}
       {{#with profile}}
           {{fullName}}
