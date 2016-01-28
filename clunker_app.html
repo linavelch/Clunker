@@ -59,13 +59,15 @@
       <p class="listing"><a href="{{pathFor route='listings'}}"></a></p>
       <p>Destination: <strong>{{ destination }}</strong></p>
       <p>Departure Info: <i>{{ month }} {{ day }}, ( {{ time }} {{ ampm }} )</i></p>
+      <p>Cost of Ride: ${{price}}</p>
       Driver:
         <ul>
           <li>{{ name }}</li>
           <li>{{ unix }}</li>
           <li>{{ phone }}</li>
         </ul>
-      <p><button class="catch">Catch a Ride</button>
+      <p><a class="submit" href="mailto:{{unix}}@williams.edu?subject=Ride Request
+        &body=Hi {{name}}! I would like to catch a ride with you through ClunkerU. Please confirm my spot: Ride to {{destination}} on {{ month }} {{ day }} leaving at {{ time }} {{ ampm }}. Thank you!">Catch a Ride</a>
       <button class="delete">Cancel</button></p>
       <p>_____________________________________________________________________________________________________________</p>
     {{/each}}
@@ -94,12 +96,12 @@
 
 <div class="form-group">
   <label for="unix">Unix:</label>
-  <input type="text" class="form-control" name="unix" required="required"/>
+  <input type="text" class="form-control" name="unix" maxlength="4" required="required"/>
 </div>
 
 <div class="form-group">
   <label for="phoneNumber">Phone Number:</label>
-  <input type="number" class="form-control" name="phoneNumber" required="required"/>
+  <input type="tel" class="form-control" name="phoneNumber" maxlength="10" required="required"/>
 </div>
 
 <div class="form-group">
@@ -198,9 +200,14 @@
       <option value="AM">AM</option>
       <option value="PM">PM</option>
     </select>
+
+    <div class="form-group">
+      <label for="price">Cost of Trip:</label>
+      <input type="number" class="form-control" name="price" required="required"/>
+    </div>
   </div>
 
-  <button class="submit2">Post Ride</button>
+  <button class="submit">Post Ride</button>
 </form>
 </div>
 </template>

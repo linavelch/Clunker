@@ -60,7 +60,10 @@ if (Meteor.isClient) {
       var phoneBox = $(event.target).find('input[name=phoneNumber]');
       var phoneNumber = phoneBox.val();
 
-      Posts.insert({destination: destination, month: month, day: day, time: time, ampm: ampm, name: name, unix: unix, phone: phoneNumber });
+      var priceBox = $(event.target).find('input[name=price]');
+      var price = priceBox.val();
+
+      Posts.insert({destination: destination, month: month, day: day, time: time, ampm: ampm, name: name, unix: unix, phone: phoneNumber, price: price });
 
       destinationBox.val('');
       monthBox.val('');
@@ -70,6 +73,7 @@ if (Meteor.isClient) {
       nameBox.val('');
       unixBox.val('');
       phoneBox.val('');
+      priceBox.val('');
 
       Router.go('/listings')
     }
