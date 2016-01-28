@@ -1,40 +1,45 @@
 Posts = new Mongo.Collection('posts');
-Profiles = new Mongo.Collection('profiles');
 
-Router.route('/posts',function() {
+Router.route('/posts', function() {
   this.render('posts');
   this.layout('posts');
 });
 
 Router.route('/', function() {
-	this.render('');
-	this.layout('layouttwo');
+  this.render('');
+  this.layout('layouttwo');
 });
 
 Router.route('/listings', function() {
-	this.render('listings');
-	this.layout('layout');
-   {
-  name: 'listings'
-}
+  this.render('listings');
+  this.layout('layout'); {
+    name: 'listings'
+  }
 });
 
-Router.route('/profile', function(){
-	this.render('Your_profile');
-	this.layout('user')
+Router.route('/profile', function() {
+  this.render('yourProfile', {
+    waitOn: function() {
+      return Meteor.subscribe('profile', Meteor.userId());
+    },
+    data: function () {
+      return Meteor.user();
+    }
+  });
+  this.layout('user');
 });
 
 Router.route('/signup', function() {
-   this.render('signup');
-   this.layout('layout');
+  this.render('signup');
+  this.layout('layout');
 });
 
 if (Meteor.isClient) {
   Meteor.subscribe("posts");
 
   Template.posts.events({
-    'submit form':function(event) {
-     event.preventDefault();
+    'submit form': function(event) {
+      event.preventDefault();
 
       var destinationBox = $(event.target).find('textarea[name=destination]');
       var destination = destinationBox.val();
@@ -80,7 +85,7 @@ if (Meteor.isClient) {
   });
 
   Template.listings.events({
-    'click .delete':function(e) {
+    'click .delete': function(e) {
       e.preventDefault();
       var currentPostId = this._id;
       Posts.remove(currentPostId);
@@ -94,7 +99,7 @@ if (Meteor.isClient) {
          Posts.remove(currentPostId);
          }
        }*/
-     }
+    }
   });
 
   Template.signup.events({
@@ -103,22 +108,28 @@ if (Meteor.isClient) {
       var fullNameVar = event.target.fullName.value;
       var emailVar = event.target.signupEmail.value;
       var passwordVar = event.target.signupPassword.value;
-      var phoneVar= event.target.phoneNumber.value;
-      var classYearVar= event.target.classYear.value;
-      var offerRideVar=event.target.choices.value;
-      var makeModelVar=event.target.carModel.value;
-      var mpgVar=event.target.mpg.value;
+      var phoneVar = event.target.phoneNumber.value;
+      var classYearVar = event.target.classYear.value;
+      var offerRideVar = event.target.choices.value;
+      var makeModelVar = event.target.carModel.value;
+      var mpgVar = event.target.mpg.value;
       Accounts.createUser({
-        name:fullNameVar,
         email: emailVar,
-        phoneNumber: phoneVar,
         password: passwordVar,
-        class:classYearVar,
-        offering:offerRideVar,
-        carType:makeModelVar,
-        mpg:mpgVar,
+        profile: {
+          name: fullNameVar,
+          phoneNumber: phoneVar,
+          class: classYearVar,
+          offering: offerRideVar,
+          carType: makeModelVar,
+          mpg: mpgVar
+        }
+      }, function(error) {
+        console.log(error);
+        if(!error) {
+          Router.go('/profile')
+        }
       });
-      Router.go('/profile')
     }
   });
 
@@ -127,9 +138,12 @@ if (Meteor.isClient) {
       event.preventDefault();
       var emailVar = event.target.loginEmail.value;
       var passwordVar = event.target.loginPassword.value;
-      Meteor.loginWithPassword(emailVar, passwordVar);
+      debugger;
+      Meteor.loginWithPassword(emailVar, passwordVar, function(error){
+        console.log(error);
+      });
       Router.go('/listings')
-  }
+    }
   });
 
   Template.settings.events({
@@ -145,50 +159,67 @@ if (Meteor.isClient) {
     }
   });
 
-Meteor.subscribe("profiles");
-
-  Template.user.helpers({
-  	'nameVar': function() {
-  		return Meteor.user().profile.fullName;
-  	},
-    'emailVar': function() {
-  		return Meteor.user().profile.signupEmail;
-  	},
-  	'phoneVar': function() {
-  		return Meteor.user().profile.phoneNumber;
-  	},
-    'classYearVar': function() {
-  		return Meteor.user().profile.classYear;
-  	},
-  	'makeModelVar': function() {
-  		return Meteor.user().profile.carModel;
-  	},
-  	'mpgVar': function() {
-  		return Meteor.user().profile.mpg;
-  	}
+  Template.yourProfile.helpers({
+    'fullName': function() {
+      return Meteor.user().profile.name;
+    },
+    'signupEmail': function() {
+      return Meteor.user().emails[0].address;
+    },
+    'phoneNumber': function() {
+      return Meteor.user().profile.phoneNumber;
+    },
+    'classYear': function() {
+      return Meteor.user().profile.class;
+    },
+    'carMake': function() {
+      return Meteor.user().profile.carType;
+    },
+    'mpg': function() {
+      return Meteor.user().profile.mpg;
+    }
   });
 }
 
 if (Meteor.isServer) {
-  Meteor.startup(function () {
+  Meteor.startup(function() {});
+
+  Accounts.onCreateUser(function(options, user) {
+    // Use provided profile in options, or create an empty object
+    user.profile = options.profile || {};
+    return user;
   });
 
   Accounts.config({
     restrictCreationByEmailDomain: 'williams.edu',
     sendVerificationEmail: true
   });
-  Accounts.emailTemplates.verifyEmail.subject = function (user) {
+
+  Accounts.emailTemplates.verifyEmail.subject = function(user) {
     return "Please Verify Your ClunkerU Account";
   };
   Accounts.emailTemplates.verifyEmail.text = function(user, url) {
     var text = "Hello,\n\nThank you for registering to ClunkerU.\n\nTo complete your registration" +
-    "and verify your ClunkerU account, please use the following link.\n\n" + url + "\n\n" +
-               "Thank you,\nThe ClunkerU Team";
+      "and verify your ClunkerU account, please use the following link.\n\n" + url + "\n\n" +
+      "Thank you,\nThe ClunkerU Team";
     return text;
   };
   Accounts.emailTemplates.from = "ClunkerU Accounts <no-reply@meteor.com>"
 
-  Meteor.publish("posts", function () {
+  Meteor.publish("posts", function() {
     return Posts.find();
+  });
+
+  Meteor.publish("profile", function(userId) {
+    return Meteor.users.find({_id: userId}, {
+      fields: {
+       'profile.name': 1,
+       'profile.phoneNumber': 1,
+       'profile.class': 1,
+       'profile.offering': 1,
+       'profile.carType': 1,
+       'profile.mpg': 1
+      }
+    });
   });
 }
